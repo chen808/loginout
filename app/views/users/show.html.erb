@@ -1,0 +1,80 @@
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			width: 600px;
+			margin: 0 auto;
+		}
+		form{
+			margin-bottom: 10px;
+		}
+		a{
+			color: red;
+		}
+		h4{
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+
+<div id="container">
+	<!-- Show current logged in user -->
+	<h1>Welcome <%= @user.first_name %></h1>
+
+
+	<!-- User can write own comment -->
+	<form action='/users/<%= @user.id %>/comment' method='post'>
+		<input name='authenticity_token' value="<%=form_authenticity_token %>" type="hidden">
+		<h5>Make your own comment!</h5>
+		<textarea rows="4" cols="50" name="comments"></textarea>
+
+		<div>
+			<input type="submit" value="Submit" class="submit_button">
+		</div>
+	</form>
+	<!-- Display how many comments current user has -->
+	<h2>You have made <%= @user_Comment_Count %> comments</h2>
+
+	<!-- Display comments current user made here -->
+	<h4>Your comments:</h4>
+	<% @userComments.each do |x| %>
+	<p><%= x.comments %> | <a href="/users/<%= x.id %>" data-method="delete">Delete this message</a></p>
+	<!-- <form action="/users/<%= x.id %>" method="post" role="form">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<button type="submit" class="btn btn-danger">Delete this comment!</button>
+	</form> -->
+	<% end %>
+
+	<!-- Displaying all comments to fave -->
+	<h4>Other comments you may like!</h4>
+	<% @allComments.each do |i| %>
+	<p><%= i.comments  %></p>
+
+	<!-- Button to like certain comments -->
+	<form action="/users/<%= i.id %>/like" method="post" role="form">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<button type="submit" class="btn btn-success">Like this comment!</button>
+	</form>
+	<% end %>	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

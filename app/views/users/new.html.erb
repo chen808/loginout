@@ -1,0 +1,45 @@
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			width: 600px;
+			margin: 0 auto;
+			background-color: white;
+		}
+		form{
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<div id="container">
+
+<!-- Existing User Sign In -->
+<h1>Welcome back!</h1>
+<form action="/users" method="post" role="form">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+	<p>
+		<label for="email">Email</label>
+		<input type="text" class="form-control" name="email" placeholder="Enter email">
+	</p>
+
+	<p>
+		<label for="password">Password</label>
+		<input type="password" class="form-control" name="password" placeholder="Enter password">
+	</p>
+
+	<button type="submit" class="btn btn-default">Sign In</button>
+
+  <a href="/sessions/new">Not a member?</a>
+</form>
+
+
+</div>

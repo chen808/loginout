@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  username: ubuntu
+  database: loginout_test
+
+test:
+  <<: *default
+  database: loginout_test
+  username: ubuntu
+
+production:
+  <<: *default
+  database: loginout_production
+  username: ubuntu
+  password: <%= ENV['LOGINOUT_DATABASE_PASSWORD'] %>
